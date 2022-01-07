@@ -10,12 +10,12 @@ pipeline {
         }
         stage('Code Quality Check via SonarQube') {
                     environment {
-                    scannerHome = tool 'sonar'
+                    scannerHome = tool 'SonarQubeScanner-4.6.2'
                     credentialsId = credentials("SonarQube-Server3")
 				    projectKey = 'jenkins-pipeline102'
                    }
                    steps {
-                    withSonarQubeEnv("SonarQube-Server") {
+                    withSonarQubeEnv("SonarQube-8.6") {
                     sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=${projectKey} -D sonar.credentialsId=${credentialsId} -D sonar.sources=."
                     }
             }
